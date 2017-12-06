@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {fetchPrice} from "../actions/index";
+import RegionSelect from "../components/region_select";
 
 export class SearchBar extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export class SearchBar extends Component {
         };
 
         this.onInputChange = this.onInputChange.bind(this);
-        this.onRegionSelectChange = this.onRegionSelectChange.bind(this);
+        this.onRegionSelect = this.onRegionSelect.bind(this);
         this.onTermTypeSelectChange = this.onTermTypeSelectChange.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
@@ -22,7 +23,7 @@ export class SearchBar extends Component {
         this.setState({term: event.target.value})
     }
 
-    onRegionSelectChange(event) {
+    onRegionSelect(event) {
         this.setState({region: event.target.value})
     }
 
@@ -48,26 +49,7 @@ export class SearchBar extends Component {
                 <form onSubmit={this.onFormSubmit} className="input-group">
                     <div className="col-md-12">
                         <div className="col-md-4">
-                            <select value={this.state.region}
-                                    onChange={this.onRegionSelectChange}
-                                    className="drop-down">
-                                <option hidden>Region</option>
-                                <option>us-east-1</option>
-                                <option>us-east-2</option>
-                                <option>us-west-1</option>
-                                <option>us-west-2</option>
-                                <option>ca-central-1</option>
-                                <option>eu-west-1</option>
-                                <option>eu-central-1</option>
-                                <option>eu-west-2</option>
-                                <option>ap-northeast-1</option>
-                                <option>ap-northeast-2</option>
-                                <option>ap-southeast-1</option>
-                                <option>ap-southeast-2</option>
-                                <option>ap-south-1</option>
-                                <option>sa-east-1</option>
-                                <option>us-gov-west-1</option>
-                            </select>
+                            <RegionSelect selected={this.onRegionSelect} />
                         </div>
                         <div className="col-md-4">
                             <select value={this.state.termType}

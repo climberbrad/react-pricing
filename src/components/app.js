@@ -7,10 +7,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="banner col-md-12">
-                    <h1>Pricing</h1>
-                </div>
-
+                <div className="banner col-md-12"><h1>Pricing</h1></div>
                 <SearchBar/>
                 <PriceList/>
                 <ChartContainer/>
