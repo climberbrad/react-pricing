@@ -1,0 +1,17 @@
+.input-group {
+    margin: 20px 5px 5px 5px;
+}
+
+.drop-down {
+    margin: 5px;
+}
+
+.banner {
+    margin: 20px 0px 15px 0px;
+    height: 40px;
+    text-align: center;
+    background-color: #4ab7f7;
+    /*font-family: ".SF NS Display";*/
+    font-family: "Apple SD Gothic Neo";
+    color: white;
+}
