@@ -45,9 +45,6 @@ export class SearchBar extends Component {
     render() {
         return (
             <div className="col-md-12">
-                <div className="banner col-md-12">
-                    <h1>Pricing</h1>
-                </div>
                 <form onSubmit={this.onFormSubmit} className="input-group">
                     <div className="col-md-12">
                         <div className="col-md-4">
