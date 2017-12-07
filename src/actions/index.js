@@ -5,7 +5,7 @@ const ON_DEMAND_ROOT_URL ='https://production-pricing.cldy.zone/v1/ec2?operating
 
 export const FETCH_PRICE = 'FETCH_PRICE';
 
-export function fetchPrice(searchTerm, region, leaseContractLength) {
+export function fetchPrice(searchTerm, region, leaseContractLength, offeringClass) {
     var riURL = `${RI_ROOT_URL}&instanceType=${searchTerm}`
     var onDemandURL = `${ON_DEMAND_ROOT_URL}&instanceType=${searchTerm}`
 
@@ -17,6 +17,10 @@ export function fetchPrice(searchTerm, region, leaseContractLength) {
 
     if (leaseContractLength != '') {
         riURL = `${riURL}&leaseContractLength=${leaseContractLength}`
+    }
+
+    if(offeringClass != '') {
+        riURL = `${riURL}&offeringClass=${offeringClass}`
     }
 
     const request = axios.all([

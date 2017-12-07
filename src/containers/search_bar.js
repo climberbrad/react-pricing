@@ -4,6 +4,7 @@ import {bindActionCreators} from "redux";
 import {fetchPrice} from "../actions/index";
 import RegionSelect from "../components/region_select";
 import LeaseContractLengthSelect from '../components/lease_contract_length_select';
+import OfferingClassSelect from '../components/offering_class_select';
 
 export class SearchBar extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export class SearchBar extends Component {
         this.state = {
             term: '',
             region: '',
+            offeringClass: '',
             leaseContractLength: ''
         };
 
@@ -18,6 +20,7 @@ export class SearchBar extends Component {
         this.onRegionSelect = this.onRegionSelect.bind(this);
         this.onLeaseContractLengthSelect = this.onLeaseContractLengthSelect.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.onOfferingClassSelect = this.onOfferingClassSelect.bind(this);
     }
 
     onTermChange(event) {
@@ -26,6 +29,10 @@ export class SearchBar extends Component {
 
     onRegionSelect(event) {
         this.setState({region: event.target.value})
+    }
+
+    onOfferingClassSelect(event) {
+        this.setState({offeringClass: event.target.value})
     }
 
     onLeaseContractLengthSelect(event) {
@@ -39,7 +46,8 @@ export class SearchBar extends Component {
         this.props.fetchPrice(
             this.state.term,
             this.state.region,
-            this.state.leaseContractLength
+            this.state.leaseContractLength,
+            this.state.offeringClass
         );
         this.setState({term: ''});
     }
@@ -49,19 +57,9 @@ export class SearchBar extends Component {
             <div className="col-md-12">
                 <form onSubmit={this.onFormSubmit} className="input-group">
                     <div className="col-md-12">
-                        <div className="col-md-4">
-                            <RegionSelect selected={this.onRegionSelect} />
-                        </div>
-                        <div className="col-md-4">
-                            <LeaseContractLengthSelect selected={this.onLeaseContractLengthSelect} />
-                        </div>
-                        <div className="col-md-4">
-                            <select className="drop-down">
-                                <option hidden>Offering</option>
-                                <option>Standard</option>
-                                <option>Convertible</option>
-                            </select>
-                        </div>
+                        <div className="col-md-4"><RegionSelect selected={this.onRegionSelect}/></div>
+                        <div className="col-md-4"><LeaseContractLengthSelect selected={this.onLeaseContractLengthSelect}/></div>
+                        <div className="col-md-4"><OfferingClassSelect selected={this.onOfferingClassSelect}/></div>
                     </div>
                     <div className="col-md-12">
                         <div className="col-md-10">
