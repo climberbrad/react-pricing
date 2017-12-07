@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {fetchPrice} from "../actions/index";
 import RegionSelect from "../components/region_select";
+import LeaseContractLengthSelect from '../components/lease_contract_length_select';
 
 export class SearchBar extends Component {
     constructor(props) {
@@ -10,16 +11,16 @@ export class SearchBar extends Component {
         this.state = {
             term: '',
             region: '',
-            termType: ''
+            leaseContractLength: ''
         };
 
-        this.onInputChange = this.onInputChange.bind(this);
+        this.onTermChange = this.onTermChange.bind(this);
         this.onRegionSelect = this.onRegionSelect.bind(this);
-        this.onTermTypeSelectChange = this.onTermTypeSelectChange.bind(this);
+        this.onLeaseContractLengthSelect = this.onLeaseContractLengthSelect.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    onInputChange(event) {
+    onTermChange(event) {
         this.setState({term: event.target.value})
     }
 
@@ -27,8 +28,8 @@ export class SearchBar extends Component {
         this.setState({region: event.target.value})
     }
 
-    onTermTypeSelectChange(event) {
-        this.setState({termType: event.target.value})
+    onLeaseContractLengthSelect(event) {
+        this.setState({leaseContractLength: event.target.value})
     }
 
     // search pricing-service
@@ -38,7 +39,7 @@ export class SearchBar extends Component {
         this.props.fetchPrice(
             this.state.term,
             this.state.region,
-            this.state.termType
+            this.state.leaseContractLength
         );
         this.setState({term: ''});
     }
@@ -52,13 +53,7 @@ export class SearchBar extends Component {
                             <RegionSelect selected={this.onRegionSelect} />
                         </div>
                         <div className="col-md-4">
-                            <select value={this.state.termType}
-                                    onChange={this.onTermTypeSelectChange}
-                                    className="drop-down">
-                                <option hidden>Term</option>
-                                <option>OnDemand</option>
-                                <option>Reserved</option>
-                            </select>
+                            <LeaseContractLengthSelect selected={this.onLeaseContractLengthSelect} />
                         </div>
                         <div className="col-md-4">
                             <select className="drop-down">
@@ -74,7 +69,7 @@ export class SearchBar extends Component {
                                 placeholder="instance type"
                                 className="form-control"
                                 value={this.state.term}
-                                onChange={this.onInputChange}/>
+                                onChange={this.onTermChange}/>
                         </div>
                         <div className="col-md-2">
                             <button type="submit" className="btn btn-secondary">Submit</button>
