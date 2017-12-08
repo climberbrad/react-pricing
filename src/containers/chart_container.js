@@ -46,7 +46,7 @@ export class ChartContainer extends Component {
     }
 
     getAllUpfrontPrices(months) {
-        const price = this.props.price.UPFRONT_KEY.data.result[0].pricePerUnit;
+        const price = this.props.price.UPFRONT_KEY.data.result[0].pricePerUnit; // all upfront is first item
 
         var result = [];
         for (var i = 0; i < months; i++) {
@@ -60,7 +60,6 @@ export class ChartContainer extends Component {
             const instanceType = this.props.price.HOURLY_KEY[0].instanceType;
             const leaseContractLength = this.props.price.HOURLY_KEY[0].leaseContractLength;
             var months = leaseContractLength == '1yr' ? 12 : 36; // 1yr or 3yr RI
-            console.log('months: ' + months);
 
             const onDemandPrice = this.getOnDemandPrice(months);
             const partialUpfront = this.getReservedPrice(months, 'Partial Upfront');
