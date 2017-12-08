@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import ReactHighcharts from "react-highcharts";
 
+
+// 8760 hours per year
 export default class CostChart extends Component {
     constructor(props) {
         super(props);
@@ -9,8 +11,9 @@ export default class CostChart extends Component {
     graphConfig() {
         let seriesDataList = []
         seriesDataList.push({name: "On Demand", data: this.props.onDemandCost});
-        seriesDataList.push({name: "No Upfront RI (1yr)", data: this.props.oneYearRiCost});
-        seriesDataList.push({name: "Partial Upfront RI (1yr)", data: this.props.twoYearRiCost});
+        seriesDataList.push({name: "No Upfront RI (" + this.props.leaseContractLength + ")", data: this.props.oneYearRiCost});
+        seriesDataList.push({name: "Partial Upfront RI (" + this.props.leaseContractLength + ")", data: this.props.twoYearRiCost});
+        seriesDataList.push({name: "All Upfront (" + this.props.leaseContractLength + ")", data: this.props.allUpfrontCost});
 
         let config = {
             chart: {
@@ -20,7 +23,10 @@ export default class CostChart extends Component {
                 text: this.props.instanceType
             },
             xAxis: {
-                categories: ['Jan', 'Feb', 'March', 'April', 'May']
+                title: {
+                    text: 'Months'
+                },
+                categories: []
             },
             yAxis: {
                 title: {

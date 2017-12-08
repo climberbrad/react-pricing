@@ -8,14 +8,14 @@ export class PriceList extends Component {
             return
         }
 
-        return (<PriceItem
-            instanceType={priceData.instanceType}
-            region={priceData.region}
-            termType={priceData.termType}
-            leaseContractLength={priceData.leaseContractLength}
-            purchaseOption={priceData.purchaseOption}
-            offeringClass={priceData.offeringClass}
-            pricePerUnit={priceData.pricePerUnit}/>);
+        return (<PriceItem key={priceData.pricePerUnit}
+                           instanceType={priceData.instanceType}
+                           region={priceData.region}
+                           termType={priceData.termType}
+                           leaseContractLength={priceData.leaseContractLength}
+                           purchaseOption={priceData.purchaseOption}
+                           offeringClass={priceData.offeringClass}
+                           pricePerUnit={priceData.pricePerUnit}/>);
     }
 
     render() {
@@ -30,11 +30,11 @@ export class PriceList extends Component {
                         <th>Lease Length</th>
                         <th>Purchase Option</th>
                         <th>Offering Class</th>
-                        <th>Price</th>
+                        <th>Price per hour</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {this.props.price.map(pricingData => pricingData.map(this.renderPriceList))}
+                    {this.props.price.HOURLY_KEY && this.props.price.HOURLY_KEY.map(this.renderPriceList)}
                     </tbody>
                 </table>
             </div>
