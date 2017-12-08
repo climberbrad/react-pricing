@@ -20,7 +20,7 @@ export class PriceList extends Component {
 
     render() {
         return (
-            <div className="col-md-12">
+            <div className="col-md-12 price-list-container">
                 <table className="table table-hover table-striped">
                     <thead>
                     <tr>

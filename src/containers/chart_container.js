@@ -72,13 +72,45 @@ export class ChartContainer extends Component {
 
             return (
                 <div className="col-md-12">
-                    <CostChart
-                        instanceType={instanceType}
-                        onDemandCost={onDemandPrice}
-                        partialUpfrontPrice={partialUpfront}
-                        noUpfrontPrice={noUpfrontPrice}
-                        leaseContractLength={leaseContractLength}
-                        allUpfrontCost={allUpfrontCost}/>
+                    <div className="col-md-8">
+                        <CostChart
+                            instanceType={instanceType}
+                            onDemandCost={onDemandPrice}
+                            partialUpfrontPrice={partialUpfront}
+                            noUpfrontPrice={noUpfrontPrice}
+                            leaseContractLength={leaseContractLength}
+                            allUpfrontCost={allUpfrontCost}/>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="cost-bar col-md-12"><h4>Total Cost</h4></div>
+                        <div className="col-md-12 item-cost-container">
+                            <table className="table table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Usage</th>
+                                    <th>Cost</th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <td>On Demand</td>
+                                    <td>$100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Partial Upfront</td>
+                                    <td>$89.00</td>
+                                </tr>
+                                <tr>
+                                    <td>No Upfront</td>
+                                    <td>$91.00</td>
+                                </tr>
+                                <tr>
+                                    <td>All Upfront</td>
+                                    <td>$50.00</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             );
         }
