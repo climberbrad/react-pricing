@@ -9,11 +9,12 @@ export default class CostChart extends Component {
     }
 
     graphConfig() {
-        let seriesDataList = []
+        var seriesDataList = []
+        var contractLength = this.props.leaseContractLength;
         seriesDataList.push({name: "On Demand", data: this.props.onDemandCost});
-        seriesDataList.push({name: "No Upfront RI (" + this.props.leaseContractLength + ")", data: this.props.oneYearRiCost});
-        seriesDataList.push({name: "Partial Upfront RI (" + this.props.leaseContractLength + ")", data: this.props.twoYearRiCost});
-        seriesDataList.push({name: "All Upfront (" + this.props.leaseContractLength + ")", data: this.props.allUpfrontCost});
+        seriesDataList.push({name: "No Upfront RI (" + contractLength + ")", data: this.props.oneYearRiCost});
+        seriesDataList.push({name: "Partial Upfront RI (" + contractLength + ")", data: this.props.twoYearRiCost});
+        seriesDataList.push({name: "All Upfront (" + contractLength + ")", data: this.props.allUpfrontCost});
 
         let config = {
             chart: {
