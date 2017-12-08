@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import CostChart from "../components/cost_chart";
+import TotalCost from "../components/total_cost";
 
 export class ChartContainer extends Component {
 
@@ -70,6 +71,8 @@ export class ChartContainer extends Component {
             const noUpfrontPrice = this.getReservedPrice(months, 'No Upfront', 0);
             const allUpfrontCost = this.getAllUpfrontPrices(months);
 
+
+
             return (
                 <div className="col-md-12">
                     <div className="col-md-8">
@@ -82,33 +85,11 @@ export class ChartContainer extends Component {
                             allUpfrontCost={allUpfrontCost}/>
                     </div>
                     <div className="col-md-4">
-                        <div className="cost-bar col-md-12"><h4>Total Cost</h4></div>
-                        <div className="col-md-12 item-cost-container">
-                            <table className="table table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Usage</th>
-                                    <th>Cost</th>
-                                </tr>
-                                </thead>
-                                <tr>
-                                    <td>On Demand</td>
-                                    <td>$100.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Partial Upfront</td>
-                                    <td>$89.00</td>
-                                </tr>
-                                <tr>
-                                    <td>No Upfront</td>
-                                    <td>$91.00</td>
-                                </tr>
-                                <tr>
-                                    <td>All Upfront</td>
-                                    <td>$50.00</td>
-                                </tr>
-                            </table>
-                        </div>
+                        <TotalCost
+                            onDemand={onDemandPrice[onDemandPrice.length-1].toFixed(2)}
+                            partialUpfront={partialUpfront[partialUpfront.length-1].toFixed(2)}
+                            noUpfront={noUpfrontPrice[noUpfrontPrice.length-1].toFixed(2)}
+                            allUpfront={allUpfrontCost[allUpfrontCost.length-1].toFixed(2)} />
                     </div>
 
                 </div>
