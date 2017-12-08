@@ -25,8 +25,9 @@ export class ChartContainer extends Component {
     }
 
     getReservedPrice(months, purchaseOption, upfrontCost) {
-        var pricePerHour = 0.0;
 
+        // get pricePerHour for this purchaseOption
+        var pricePerHour = 0.0;
         this.props.price.HOURLY_KEY.map(priceData => {
             if (
                 (priceData.termType.toLowerCase() === 'Reserved'.toLowerCase())
@@ -36,15 +37,13 @@ export class ChartContainer extends Component {
             }
         });
 
-        var pricePerDay = pricePerHour * 24;
-        var priceperMonth = pricePerDay * 30;
-
+        var pricePerMonth = pricePerHour * 750; // aprox 750hr/mo :)
         var result = [];
         for (var i = 0; i < months; i++) {
             if (i === 0) {
                 result.push(upfrontCost)
             } else {
-                result.push(upfrontCost + (priceperMonth * i));
+                result.push(upfrontCost + (pricePerMonth * i));
             }
         }
         return result;
@@ -70,8 +69,6 @@ export class ChartContainer extends Component {
             const partialUpfront = this.getReservedPrice(months, 'Partial Upfront', partialUpfrontCost);
             const noUpfrontPrice = this.getReservedPrice(months, 'No Upfront', 0);
             const allUpfrontCost = this.getAllUpfrontPrices(months);
-
-
 
             return (
                 <div className="col-md-12">
