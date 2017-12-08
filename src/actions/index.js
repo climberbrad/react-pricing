@@ -32,7 +32,7 @@ export function fetchPrice(searchTerm, region, leaseContractLength, offeringClas
         allUpfrontURL = `${allUpfrontURL}&offeringClass=${offeringClass}`
         partialUpfrontURL = `${partialUpfrontURL}&offeringClass=${offeringClass}`
     }
-    
+
     const request = axios.all([
         axios.get(riURL),
         axios.get(onDemandURL),

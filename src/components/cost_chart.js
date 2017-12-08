@@ -12,8 +12,8 @@ export default class CostChart extends Component {
         var seriesDataList = []
         var contractLength = this.props.leaseContractLength;
         seriesDataList.push({name: "On Demand", data: this.props.onDemandCost});
-        seriesDataList.push({name: "No Upfront RI (" + contractLength + ")", data: this.props.oneYearRiCost});
-        seriesDataList.push({name: "Partial Upfront RI (" + contractLength + ")", data: this.props.twoYearRiCost});
+        seriesDataList.push({name: "No Upfront RI (" + contractLength + ")", data: this.props.noUpfrontPrice});
+        seriesDataList.push({name: "Partial Upfront RI (" + contractLength + ")", data: this.props.partialUpfrontPrice});
         seriesDataList.push({name: "All Upfront (" + contractLength + ")", data: this.props.allUpfrontCost});
 
         let config = {

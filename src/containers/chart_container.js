@@ -23,7 +23,7 @@ export class ChartContainer extends Component {
         return result;
     }
 
-    getReservedPrice(months, purchaseOption) {
+    getReservedPrice(months, purchaseOption, upfrontCost) {
         var pricePerHour = 0.0;
 
         this.props.price.HOURLY_KEY.map(priceData => {
@@ -40,14 +40,17 @@ export class ChartContainer extends Component {
 
         var result = [];
         for (var i = 0; i < months; i++) {
-            result.push(priceperMonth * i);
+            if (i === 0) {
+                result.push(upfrontCost)
+            } else {
+                result.push(upfrontCost + (priceperMonth * i));
+            }
         }
         return result;
     }
 
     getAllUpfrontPrices(months) {
-        const price = this.props.price.UPFRONT_KEY.data.result[0].pricePerUnit; // all upfront is first item
-
+        const price = this.props.price.UPFRONT_KEY[0].pricePerUnit; // all upfront is first item in array
         var result = [];
         for (var i = 0; i < months; i++) {
             result.push(price);
@@ -57,14 +60,14 @@ export class ChartContainer extends Component {
 
     render() {
         if (this.props.price != '') {
+            const partialUpfrontCost = this.props.price.UPFRONT_KEY[1].pricePerUnit; // partial is 2nd item in array
             const instanceType = this.props.price.HOURLY_KEY[0].instanceType;
             const leaseContractLength = this.props.price.HOURLY_KEY[0].leaseContractLength;
             var months = leaseContractLength == '1yr' ? 12 : 36; // 1yr or 3yr RI
 
             const onDemandPrice = this.getOnDemandPrice(months);
-            const partialUpfront = this.getReservedPrice(months, 'Partial Upfront');
-            const noUpfrontPrice = this.getReservedPrice(months, 'No Upfront');
-
+            const partialUpfront = this.getReservedPrice(months, 'Partial Upfront', partialUpfrontCost);
+            const noUpfrontPrice = this.getReservedPrice(months, 'No Upfront', 0);
             const allUpfrontCost = this.getAllUpfrontPrices(months);
 
             return (
@@ -72,8 +75,8 @@ export class ChartContainer extends Component {
                     <CostChart
                         instanceType={instanceType}
                         onDemandCost={onDemandPrice}
-                        oneYearRiCost={partialUpfront}
-                        twoYearRiCost={noUpfrontPrice}
+                        partialUpfrontPrice={partialUpfront}
+                        noUpfrontPrice={noUpfrontPrice}
                         leaseContractLength={leaseContractLength}
                         allUpfrontCost={allUpfrontCost}/>
                 </div>

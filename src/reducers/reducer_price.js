@@ -8,8 +8,8 @@ export default function (state = [], action) {
     var upfrontPricing = [];
 
     if (Array.isArray(action.payload)) {
-        hourlyPricing = action.payload[0].data.result.concat(action.payload[1].data.result); // onDemand and Reserved
-        upfrontPricing = action.payload[2];
+        hourlyPricing = action.payload[0].data.result.concat(action.payload[1].data.result); // onDemand, Reserved
+        upfrontPricing = action.payload[2].data.result.concat(action.payload[3].data.result); // all upfront, partial_upfront
     }
 
     const dataMap = {
