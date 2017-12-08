@@ -6,7 +6,15 @@ const UPFRONT_ROOT_URL = 'https://production-pricing.cldy.zone/v1/ec2?operatingS
 
 export const FETCH_PRICE = 'FETCH_PRICE';
 
+function addAccountToUrl(url, accountIdentifier) {
+    var position = url.indexOf('?');
+    return url.substr(0, position) + '/' + accountIdentifier + url.substr(position);
+}
+
 export function fetchPrice(searchTerm, region, leaseContractLength, offeringClass) {
+
+    const accountIdentifier = location.search.split('=')[1];
+
     var riURL = `${RI_ROOT_URL}&instanceType=${searchTerm}`
     var onDemandURL = `${ON_DEMAND_ROOT_URL}&instanceType=${searchTerm}`
     var allUpfrontURL = `${UPFRONT_ROOT_URL}&instanceType=${searchTerm}&purchaseOption=All_Upfront`
@@ -14,7 +22,6 @@ export function fetchPrice(searchTerm, region, leaseContractLength, offeringClas
 
     if (region != '') {
         onDemandURL = `${onDemandURL}&region=${region}`
-
         riURL = `${riURL}&region=${region}`
         allUpfrontURL = `${allUpfrontURL}&region=${region}`
         partialUpfrontURL = `${partialUpfrontURL}&region=${region}`
@@ -31,6 +38,13 @@ export function fetchPrice(searchTerm, region, leaseContractLength, offeringClas
         riURL = `${riURL}&offeringClass=${offeringClass}`
         allUpfrontURL = `${allUpfrontURL}&offeringClass=${offeringClass}`
         partialUpfrontURL = `${partialUpfrontURL}&offeringClass=${offeringClass}`
+    }
+
+    if (accountIdentifier) {
+        onDemandURL = addAccountToUrl(onDemandURL, accountIdentifier);
+        riURL = addAccountToUrl(riURL, accountIdentifier);
+        allUpfrontURL = addAccountToUrl(allUpfrontURL, accountIdentifier);
+        partialUpfrontURL = addAccountToUrl(partialUpfrontURL, accountIdentifier);
     }
 
     const request = axios.all([
