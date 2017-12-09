@@ -21,6 +21,7 @@ export class PriceList extends Component {
     render() {
         return (
             <div className="col-md-12 price-list-container">
+                {this.props.price.HOURLY_KEY &&
                 <table className="table table-hover table-striped">
                     <thead>
                     <tr>
@@ -34,9 +35,10 @@ export class PriceList extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.props.price.HOURLY_KEY && this.props.price.HOURLY_KEY.map(this.renderPriceList)}
+                    {this.props.price.HOURLY_KEY.map(this.renderPriceList)}
                     </tbody>
                 </table>
+                }
             </div>
         );
     }
