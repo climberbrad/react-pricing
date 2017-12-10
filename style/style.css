@@ -35,3 +35,7 @@
 .container-fluid {
     background-color: #f6f6f6;
 }
+
+.table-data {
+    font-size: small;
+}
