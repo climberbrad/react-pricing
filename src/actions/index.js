@@ -1,8 +1,11 @@
 import axios from "axios";
 
-const RI_ROOT_URL = 'https://production-pricing.cldy.zone/v1/ec2?operatingSystem=linux&tenancy=shared&unit=hrs&termType=Reserved';
-const ON_DEMAND_ROOT_URL = 'https://production-pricing.cldy.zone/v1/ec2?operatingSystem=linux&tenancy=shared&unit=hrs&termType=onDemand';
-const UPFRONT_ROOT_URL = 'https://production-pricing.cldy.zone/v1/ec2?operatingSystem=linux&termType=Reserved&tenancy=shared&unit=Quantity';
+// const host='https://production-pricing.cldy.zone';
+const host='http://localhost:9090';
+
+const RI_ROOT_URL = host +'/v1/ec2?operatingSystem=linux&tenancy=shared&unit=hrs&termType=Reserved';
+const ON_DEMAND_ROOT_URL = host +'/v1/ec2?operatingSystem=linux&tenancy=shared&unit=hrs&termType=onDemand';
+const UPFRONT_ROOT_URL = host +'/v1/ec2?operatingSystem=linux&termType=Reserved&tenancy=shared&unit=Quantity';
 
 export const FETCH_PRICE = 'FETCH_PRICE';
 

@@ -14,6 +14,9 @@ export default (props) => {
             <td className="table-data">{props.networkPerformance}</td>
             <td className="table-data">{props.vcpu}</td>
             <td className="table-data">{props.storage}</td>
+            if(props.edpRuleName != '') {
+                <td className="table-data">{props.edpRuleName}</td>
+            }
         </tr>
     );
 }

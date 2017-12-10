@@ -8,6 +8,8 @@ export class PriceList extends Component {
             return
         }
 
+        console.log(priceData)
+
         return (<PriceItem key={priceData.pricePerUnit}
                            instanceType={priceData.instanceType}
                            region={priceData.region}
@@ -20,6 +22,7 @@ export class PriceList extends Component {
                            networkPerformance={priceData.networkPerformance}
                            vcpu={priceData.vcpu}
                            storage={priceData.storage}
+                           edpRuleName={priceData.edpRuleName}
         />);
     }
 
@@ -41,6 +44,10 @@ export class PriceList extends Component {
                         <th className="table-data">Network</th>
                         <th className="table-data">vcpu</th>
                         <th className="table-data">Storage</th>
+                        {
+                        this.props.price.HOURLY_KEY[0].edpRuleName &&
+                            <th className="table-data">Edp</th>
+                        }
                     </tr>
                     </thead>
                     <tbody>
