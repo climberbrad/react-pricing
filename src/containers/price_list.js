@@ -16,7 +16,7 @@ export class PriceList extends Component {
                            termType={priceData.termType}
                            leaseContractLength={priceData.leaseContractLength}
                            purchaseOption={priceData.purchaseOption}
-                           offeringClass={priceData.offeringClass}
+                           clockSpeed={priceData.clockSpeed}
                            pricePerUnit={priceData.pricePerUnit}
                            memory={priceData.memory}
                            networkPerformance={priceData.networkPerformance}
@@ -38,7 +38,7 @@ export class PriceList extends Component {
                         <th className="table-data">Term</th>
                         <th className="table-data">Lease</th>
                         <th className="table-data">Purchase Option</th>
-                        <th className="table-data">Offering Class</th>
+                        <th className="table-data">Clock Speed</th>
                         <th className="table-data">Price</th>
                         <th className="table-data">Memory</th>
                         <th className="table-data">Network</th>
