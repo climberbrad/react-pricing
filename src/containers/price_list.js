@@ -34,7 +34,7 @@ export class PriceList extends Component {
                     <thead>
                     <tr>
                         <th className="table-data">Instance</th>
-                        <th className="table-data">Region</th>
+                        {/*<th className="table-data">Region</th>*/}
                         <th className="table-data">Term</th>
                         <th className="table-data">Lease</th>
                         <th className="table-data">Purchase Option</th>

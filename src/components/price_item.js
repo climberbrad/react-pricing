@@ -4,7 +4,7 @@ export default (props) => {
     return (
         <tr>
             <td className="table-data">{props.instanceType}</td>
-            <td className="table-data">{props.region}</td>
+            {/*<td className="table-data">{props.region}</td>*/}
             <td className="table-data">{props.termType}</td>
             <td className="table-data">{props.leaseContractLength}</td>
             <td className="table-data">{props.purchaseOption}</td>
